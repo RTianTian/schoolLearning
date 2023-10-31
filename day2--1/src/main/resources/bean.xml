@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+<!--1. 复杂的属性如何注入值-->
+<!--    我们可以知道，一个类对应一个Bean工厂，-->
+<!--   class属性： 类的全限定名（包名+类名），用“.”号连接；-->
+<!--    我们可以用 property 属性将String、Int、对象、集合、Map 等集合注入到 Bean 中-->
+<!--  property中的name是指该类中的属性。  -->
+    <bean id="ljgaddress1" class="lgj.com.pojo.Address">
+        <property name="address1" value="h2"/>
+        <property name="address2" value="h3"/>
+        <property name="address3" value="h4"/>
+
+    </bean>
+<!--Student类对应的Bean工厂-->
+<bean id="stu1" class="lgj.com.pojo.Student">
+<!--    1.普通类型，利用property直接注入即可-->
+<property name = "id" value="100011"/>
+<property name="name" value="泡泡"/>
+
+<!-- 3.对象值注入   ref则是为了得到另一个Bean工厂，将其id写给ref-->
+<property name="address" ref="ljgaddress1"/>
+
+<!--    4.数组array注入值-->
+    <property name="books">
+        <array>
+            <value>Java程序设计</value>
+            <value>Python程序设计</value>
+            <value>Web程序设计</value>
+            <value>Java程序设计</value>
+        </array>
+    </property>
+<!--    5.List集合注入-->
+    <property name="habbys" >
+        <list>
+            <value>打球</value>
+            <value>打球</value>
+            <value>打球</value>
+            <value>打球</value>
+            <value>打球</value>
+
+        </list>
+    </property>
+<!--   6. set 集合注入值-->
+    <property name="games">
+        <set>
+            <value>连连看</value>
+            <value>斗地主</value>
+            <value>连连看2</value>
+            <value>连连看3</value>
+        </set>
+    </property>
+<!--    7.map注入-->
+    <property name="card">
+        <map>
+            <entry key="id" value="123456"/>
+              <entry key="工商银行" value="123456789"/>
+            <entry key="建设银行" value="123456789"/>
+            <entry key="邮政银行" value="123456789"/>
+            <entry key="中国银行" value="123456789"/>
+        </map>
+    </property>
+<!--    8.空集注入-->
+    <property name="wife">
+        <null></null>
+    </property>
+<!--    9.Java属性值注入-->
+<property name="info">
+    <props>
+        <prop key="学号">1001</prop>
+        <prop key="姓名">刘建国</prop>
+        <prop key="age">18</prop>
+        <prop key="sex">男</prop>
+        <prop key="年级">三</prop>
+    </props>
+</property>
+</bean>
+</beans>

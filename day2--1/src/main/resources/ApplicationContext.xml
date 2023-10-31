@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <!--<bean>装配车间，装配bean，不创建bean-->
+    <!--2. bean：装配bean的标签
+    id="user1"：对象名称user1，
+    class="ljg.com.pojo.User"：创建对象时使用的类，这个方法是调用无参构造器创建对象
+    -->
+
+    <bean id="user1" class="lgj.com.pojo.User"/>
+<!--    使用有参构造器创建对象-->
+<!--    3.使用有参构造器创建对象：
+注入值的方式1：使用参数的下标地址
+有参构造器的第一参数下标为0，
+-->
+<bean id="user2" class="lgj.com.pojo.User">
+<!--    constructor-arg 多参构造器修改对象的属性值 ，参数构造方法-->
+    <constructor-arg index="0" value ='2001'/>
+    <constructor-arg index="1" value ='厉害了'/>
+    <constructor-arg index="2" value ='男'/>
+    <constructor-arg index="3" value ='20'/>
+    <constructor-arg index="4" value ='北京'/>
+
+
+</bean>
+
+    <bean id="user3" class="lgj.com.pojo.User">
+    <constructor-arg index="0" value ="2002"/>
+    <constructor-arg index="1" value ="小李"/>
+    </bean>
+<!--  property属性  使用设置值来创建对象,同set方法-->
+    <bean id ="user4" class="lgj.com.pojo.User">
+        <property name="id" value="3001"/>
+        <property name="name" value="李龙"/>
+        <property name="age" value="30"/>
+        <property name="sex" value="女"/>
+        <property name="address" value="河北"/>
+
+    </bean>
+<!--    使用构造器创建对象，使用参数名称注入值DI-->
+<bean id="user6" class="lgj.com.pojo.User">
+    <constructor-arg name="id" value="4001"/>
+    <constructor-arg name="name" value="李四"/>
+    <constructor-arg name="sex" value="女"/>
+    <constructor-arg name="age" value="20"/>
+    <constructor-arg name="address" value="河北"/>
+</bean>
+<!--    给user6换名，可换好几个-->
+<alias name="user6" alias="user666"/>
+<alias name="user6" alias="user999"/>
+
+
+
+</beans>
+
+

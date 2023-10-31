@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+<!--    方法都是单独地写成一个bean工厂，然后属性都是写道它所在的bean工厂里面-->
+<!--    这是address类的bean工厂-->
+<bean id="ljgaddress" class="ljg.com.pojo.Address">
+<!--    如果没有get和set方法，就会报错-->
+    <property name="address1" value="河北东方1"/>
+    <property name="address2" value="河北东方2"/>
+    <property name="address3" value="河北东方2"/>
+</bean>
+
+<!--    这是stu1 的bean工厂-->
+    <bean id="stu1" class="ljg.com.pojo.Student">
+        <property name="id" value="10001"></property>
+        <property name="name" value="小李"></property>
+<property name="address" ref="ljgaddress"></property>
+        <property name="books">
+            <array>
+                <value>书1</value>
+                <value>书2</value>
+                <value>书3</value>
+            </array>
+        </property>
+        <property name="games" >
+            <set>
+                <value>游戏1</value>
+                <value>游戏2</value>
+                <value>游戏3</value>
+            </set>
+        </property>
+        <property name="cards">
+            <map>
+                <entry key="建设" value="12345679"></entry>
+                <entry key="中国" value="123456"></entry>
+                <entry key="中国" value="123456"></entry>
+            </map>
+        </property>
+        <property name="habbys">
+            <list>
+                <value>打球1</value>
+                <value>打球2</value>
+                <value>打球3</value>
+            </list>
+        </property>
+        <property name="wife">
+            <null></null>
+        </property>
+        <property name="info">
+          <props>
+              <prop key="学号">2005</prop>
+              <prop key="姓名">天天</prop>
+          </props>
+        </property>
+    </bean>
+
+
+
+</beans>

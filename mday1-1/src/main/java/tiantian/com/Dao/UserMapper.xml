@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tiantian.com.Dao.UserDao">
+    <!--
+       1. 创建方法id="getUserList"
+       2. 执行sql语言 select * from  xsg.user;
+       3. 返回查询语句的结果数据类型 resultType="ljg.com.pojo.User"
+   &ndash;&gt;findAll-->
+<!--    通过addUser方法，来增加语句-->
+    <insert id="addUser" parameterType="tiantian.com.pojo.User">
+        insert into xsg.user(id,name,sex,age,address)
+        values(#{id},#{name},#{sex},#{age},#{address})
+    </insert>
+    <update id="updateUser" parameterType="tiantian.com.pojo.User">
+
+    update xsg.user set name=#{name},sex=#{sex},age=#{age},address=#{address}
+    where id=#{id}
+    </update>
+    <select id="findbyid" parameterType="int" resultType="tiantian.com.pojo.User">
+    select * from user where id=#{id}
+    </select>
+    <select id="findAll" resultType="tiantian.com.pojo.User">
+        select  * from xsg.user
+    </select>
+    <delete id="delUser" parameterType="int">
+    delete from xsg.user
+    where id=#{id};
+   </delete>
+    <select id="getUserList"  resultType="tiantian.com.pojo.User">
+        select * from  xsg.user;
+    </select>
+
+
+</mapper>

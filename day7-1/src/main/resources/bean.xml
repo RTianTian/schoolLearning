@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contect = "http://www.springframework.org/schema/context"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframwork.org/schema/aop/spring-aop-4.3.xsd">
+<!--    实体类-->
+    <bean id="user" class="com.tiantian.pojo.User" scope="singleton"/>
+<!--    Dao层-->
+    <bean id="userDao" class="com.tiantian.dao.UserDaoImpl" scope="singleton"></bean>
+<!--property:它是bean标记的子标记,
+用以调用Bean实例中的相关Set方法完成属性值的赋值,
+从而完成依赖关系的注入-->
+<!--    Service层-->
+    <bean id="userService" class="com.tiantian.Service.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+   </bean>
+<!--       Controller层 userService在Controller层中被当作属性-->
+<bean id="controller" class="com.tiantian.controller.UserController">
+<property name="userService" ref="userService"></property>
+</bean>
+    <bean id="beforelog" class="com.tiantian.log.Beforelog"></bean>
+    <bean id="afetlog" class="com.tiantian.log.Afterlog"></bean>
+<!--    配置AOP-->
+    <aop:config>
+<!--pointcut 切入点  -->
+        <aop:pointcut id="pointcut" expression="execution(* com.tiantian.Service.UserServiceImpl.*(..))"/>
+        <aop:advisor advice-ref="beforelog" pointcut-ref="pointcut"></aop:advisor>
+        <aop:advisor advice-ref="afetlog" pointcut-ref="pointcut"></aop:advisor>
+    </aop:config>
+</beans>

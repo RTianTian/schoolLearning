@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+<!--    singleton 单例模型  它始终指向同一个对象，-->
+    <bean id="user" class="ljg.com.pojo.User" scope="singleton">
+        <property name="id" value="1001"></property>
+        <property name="name" value="李二"></property>
+        <property name="sex" value="女"></property>
+    </bean>
+<!-- prototype 原型  每次通过spring容器获取的prototype定义的Bean时，容器都将创建一个新的Bean实例 -->
+    <bean id="user1" class="ljg.com.pojo.User" scope="prototype"/>
+
+
+    </beans>
